@@ -21,7 +21,27 @@ func (r *Ring) search(key string) int {
     /////////////////////////
     // YOUR CODE GOES HERE //
     /////////////////////////
-
+	
+	h := hashId(key)
+	l := r.Nodes.Len()
+	if h > r.Nodes[l - 1].HashId && h <= r.Nodes[0].HashId {
+	
+		return 0
+	
+	}
+	
+	for i, node := range r.Nodes {
+        
+		if i != l - 1 {
+		
+			if h > node.HashId && h <= r.Nodes[i + 1].HashId {
+				return i + 1
+			}
+			
+		}
+		
+    }
+	
     return 0
 }
 
